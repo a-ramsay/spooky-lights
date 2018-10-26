@@ -1,0 +1,32 @@
+{
+  "name": "spooky-lights",
+  "version": "0.0.0",
+  "description": "A spooky lighting automation for Philips Hue lights",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cartman640/spooky-lights"
+  },
+  "author": "Allan Ramsay",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "list": "ts-node ./src/list-lights.ts",
+    "build": "npm run build-ts && npm run tslint",
+    "build-ts": "tsc",
+    "tslint": "tslint -c tslint.json -p tsconfig.json"
+  },
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "fs-extra": "^7.0.0",
+    "node-hue-api": "^2.4.4"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^4.0.2",
+    "@types/fs-extra": "^5.0.4",
+    "@types/node": "^9.4.6",
+    "@types/node-hue-api": "^2.3.0",
+    "ts-node": "^5.0.0",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.2"
+  }
+}
