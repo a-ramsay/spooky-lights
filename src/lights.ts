@@ -6,17 +6,17 @@ export async function listLights(bridge: string) {
    const api = connect(bridge);
 
    const allLights = await api.lights();
-   const rgbLights = allLights.lights.filter(light => light.type == 'Extended color light');
-   return rgbLights;
+   return allLights.lights;
 }
 
 export async function flicker(bridge: string, light: ILight) {
    const api = connect(bridge);
-   const brightness = getRandomInt(2) === 1 ? 100 : 0;
+   let brightness = getRandomInt(2) === 1 ? 254 : -254;
    const thisLight = await api.lightStatus(light.id);
    if (!thisLight.state.on) return;
+   if (thisLight.state.bri > 204) brightness = -254;
    const originalState = lightState.create().transitionInstant().bri(thisLight.state.bri);
-   const brightState = lightState.create().transitionInstant().bri_inc(254);
+   const brightState = lightState.create().transitionInstant().bri_inc(brightness);
 
    const times = getRandomInt(4) + 1;
    for (let i = 0; i < times; i++) {

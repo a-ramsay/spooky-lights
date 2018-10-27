@@ -1,19 +1,19 @@
 require('dotenv').config();
 import * as bridge from './bridge';
 import * as lights from './lights';
+import { isRGB } from './utils';
 
-async function run() {
+export async function run() {
    const hueBridge = await bridge.scan();
    console.log(`Found bridge: ${hueBridge.ipaddress}`);
 
    const allLights = await lights.listLights(hueBridge.ipaddress);
 
    allLights.map(light => {
-      console.log(light.name);
+      if (isRGB(light.type)) {
+         console.log(light.name);
+      } else {
+         console.log(`${light.name} (flicker only)`);
+      }
    });
 }
-
-run().then(() => process.exit()).catch(error => {
-   console.error(error);
-   process.exit(1);
-});
