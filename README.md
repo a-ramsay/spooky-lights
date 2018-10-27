@@ -54,7 +54,7 @@ current working directory. The basic format of this is an array of objects:
         "command": "flicker",
         "frequency": 20
     },
-    ...
+    { ... }
 ]
 ```
 
