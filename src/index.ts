@@ -10,6 +10,12 @@ const activeScenes: Rule[] = [];
 async function run() {
    const hueBridge = await bridge.scan();
    console.log(`Found bridge: ${hueBridge.ipaddress}`);
+   console.log('Checking connection...');
+   const connectionSuccessful = await bridge.checkConnection(hueBridge.ipaddress);
+   if (!connectionSuccessful) {
+      throw new Error('Error connecting to bridge, have you registered this app with the bridge?');
+   }
+   console.log('Connection successful');
    let rules: Rule[] = [];
 
    if (await fs.pathExists('rules.json')) {

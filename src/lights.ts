@@ -14,6 +14,7 @@ export async function flicker(bridge: string, light: ILight) {
    const api = connect(bridge);
    const brightness = getRandomInt(2) === 1 ? 100 : 0;
    const thisLight = await api.lightStatus(light.id);
+   if (!thisLight.state.on) return;
    const originalState = lightState.create().transitionInstant().bri(thisLight.state.bri);
    const brightState = lightState.create().transitionInstant().bri_inc(254);
 
@@ -27,6 +28,7 @@ export async function flicker(bridge: string, light: ILight) {
 export async function breathe(bridge: string, light: ILight) {
    const api = connect(bridge);
    const thisLight = await api.lightStatus(light.id);
+   if (!thisLight.state.on) return;
    const satChange = thisLight.state.sat + 64 > 254 ? -64 : 64;
    const originalState = lightState.create().transition(1800).sat(thisLight.state.sat);
    const newState = lightState.create().transition(1800).sat_inc(satChange);
