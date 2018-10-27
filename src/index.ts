@@ -15,8 +15,7 @@ const activeScenes: Rule[] = [];
 const choices = [
    'run',
    'list-lights',
-   'register-user',
-   'check-random'
+   'register-user'
 ];
 const prompt = [
    {
@@ -60,12 +59,6 @@ inquirer.prompt<{ command: string, hueButton?: boolean }>(prompt).then(choice =>
       } else {
          console.log('Exiting');
          process.exit();
-      }
-      break;
-
-      case 'check-random':
-      for (let i = 0; i < 100; i++) {
-         console.log(getRandomInt(2));
       }
       break;
    }
