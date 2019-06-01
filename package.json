@@ -1,6 +1,6 @@
 {
   "name": "@cartman640/spooky-lights",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A spooky lighting automation for Philips Hue lights",
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
     "dotenv": "^6.1.0",
     "fs-extra": "^7.0.0",
     "inquirer": "^6.2.0",
-    "node-hue-api": "^2.4.4"
+    "node-hue-api": "^2.4.5"
   },
   "devDependencies": {
     "@types/dotenv": "^4.0.2",
